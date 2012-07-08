@@ -1,11 +1,4 @@
 
-describe("Gourmet", function() {
-  return it("should have a proper namespace", function() {
-    return expect(Gourmet).toBeDefined();
-  });
-});
-
-
 describe("Restaurant Model", function() {
   it("should exist", function() {
     return expect(Gourmet.Models.Restaurant).toBeDefined();
