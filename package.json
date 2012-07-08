@@ -1,0 +1,14 @@
+{
+  "name": "super-awesome-app",
+  "description": "Coffeescript ready template for Client side apps. Includes Jasmine BDD.",
+  "version": "0.0.1",
+  "author": {
+    "name": "Claudio Ortolina",
+    "email": "claudio@new-bamboo.co.uk"
+  },
+  "dependencies": {
+    "grunt-coffee": "~0.0.2",
+    "coffee-script": "~1.3.3",
+    "livereload": "git://github.com/napcs/node-livereload.git"
+  }
+}
