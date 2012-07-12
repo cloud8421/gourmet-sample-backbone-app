@@ -1,5 +1,7 @@
 class Gourmet.Models.Restaurant extends Backbone.Model
 
+  urlRoot: '/restaurants'
+
   defaults:
     name: null
     postcode: null
@@ -17,5 +19,7 @@ class Gourmet.Models.Restaurant extends Backbone.Model
       max:      5
 
 class Gourmet.Collections.RestaurantsCollection extends Backbone.Collection
+
+  url: '/restaurants'
 
   model: Gourmet.Models.Restaurant

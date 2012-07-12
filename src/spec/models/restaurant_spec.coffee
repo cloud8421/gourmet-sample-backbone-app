@@ -1,5 +1,11 @@
 describe "Restaurant Model", ->
 
+  beforeEach ->
+    @server = sinon.fakeServer.create()
+
+  afterEach ->
+    @server.restore()
+
   it "should exist", ->
     expect(Gourmet.Models.Restaurant).toBeDefined()
 
@@ -11,6 +17,9 @@ describe "Restaurant Model", ->
       expect(ritz.attributes.name).toBeDefined()
       expect(ritz.attributes.postcode).toBeDefined()
       expect(ritz.attributes.rating).toBeDefined()
+
+    it "should have the right url", ->
+      expect(ritz.urlRoot).toEqual '/restaurants'
 
   describe "Validations", ->
 
@@ -53,3 +62,6 @@ describe "Restaurants collection", ->
 
   it "should use the Restaurant model", ->
     expect(restaurants.model).toEqual Gourmet.Models.Restaurant
+
+  it "should have the right url", ->
+    expect(restaurants.url).toEqual '/restaurants'

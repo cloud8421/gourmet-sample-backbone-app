@@ -9,6 +9,8 @@ Gourmet.Models.Restaurant = (function(_super) {
     return Restaurant.__super__.constructor.apply(this, arguments);
   }
 
+  Restaurant.prototype.urlRoot = '/restaurants';
+
   Restaurant.prototype.defaults = {
     name: null,
     postcode: null,
@@ -41,6 +43,8 @@ Gourmet.Collections.RestaurantsCollection = (function(_super) {
   function RestaurantsCollection() {
     return RestaurantsCollection.__super__.constructor.apply(this, arguments);
   }
+
+  RestaurantsCollection.prototype.url = '/restaurants';
 
   RestaurantsCollection.prototype.model = Gourmet.Models.Restaurant;
 

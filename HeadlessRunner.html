@@ -2,8 +2,7 @@
   "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-  <title>Jasmine Spec Runner</title>
-
+  <title>Jasmine Test Runner</title>
   <link rel="shortcut icon" type="image/png" href="vendor/jasmine-1.2.0/jasmine_favicon.png">
   <link rel="stylesheet" type="text/css" href="vendor/jasmine-1.2.0/jasmine.css">
 
@@ -21,53 +20,30 @@
 
   <script type="text/javascript" src="vendor/jasmine-1.2.0/jasmine.js"></script>
   <script type="text/javascript" src="vendor/jasmine-1.2.0/jasmine-html.js"></script>
-  <script type="text/javascript" src="vendor/sinon.js"></script>
   <script type="text/javascript" src="vendor/jquery.min.js"></script>
+  <script type="text/javascript" src="vendor/sinon.js"></script>
   <script type="text/javascript" src="vendor/jasmine-jquery.js"></script>
   <script type="text/javascript" src="vendor/underscore.min.js"></script>
   <script type="text/javascript" src="vendor/backbone.min.js"></script>
   <script type="text/javascript" src="/vendor/backbone_rails_sync.js"></script>
   <script type="text/javascript" src="vendor/backbone-validations.js"></script>
   <script src="http://twitter.github.com/hogan.js/builds/2.0.0/hogan-2.0.0.js"></script>
+  <script type="text/javascript" src="vendor/jasmine-console.js"></script>
 
   <!-- include source files here... -->
   <script type="text/javascript" src="build/gourmet.js"></script>
 
   <!-- include spec files here... -->
   <script type="text/javascript" src="build/gourmet_spec.js"></script>
-
-
-  <script type="text/javascript">
-    (function() {
-      var jasmineEnv = jasmine.getEnv();
-      jasmineEnv.updateInterval = 1000;
-
-      var htmlReporter = new jasmine.HtmlReporter();
-
-      jasmineEnv.addReporter(htmlReporter);
-
-      jasmineEnv.specFilter = function(spec) {
-        return htmlReporter.specFilter(spec);
-      };
-
-      var currentWindowOnload = window.onload;
-
-      window.onload = function() {
-        if (currentWindowOnload) {
-          currentWindowOnload();
-        }
-        execJasmine();
-      };
-
-      function execJasmine() {
-        jasmineEnv.execute();
-      }
-
-    })();
-  </script>
-
 </head>
-
 <body>
+
+<script type="text/javascript">
+  var console_reporter = new jasmine.ConsoleReporter()
+  jasmine.getEnv().addReporter(new jasmine.TrivialReporter());
+  jasmine.getEnv().addReporter(console_reporter);
+  jasmine.getEnv().execute();
+</script>
+
 </body>
 </html>

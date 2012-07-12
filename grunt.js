@@ -1,6 +1,8 @@
 module.exports = function(grunt) {
 
   grunt.loadNpmTasks('grunt-coffee');
+  grunt.loadNpmTasks('grunt-reload');
+  grunt.loadNpmTasks('grunt-shell');
 
   // Project configuration.
   grunt.initConfig({
@@ -24,7 +26,7 @@ module.exports = function(grunt) {
     },
     watch: {
       files: 'src/**/*.coffee',
-      tasks: 'coffee concat min'
+      tasks: 'coffee concat min shell reload'
     },
     concat: {
       app: {
@@ -41,10 +43,28 @@ module.exports = function(grunt) {
         src: ['<banner:meta.banner>', '<config:concat.app.dest>'],
         dest: 'build/<%= pkg.name %>.min.js'
       }
+    },
+    reload: {
+      port: 35729, // LR default
+      liveReload: {},
+      proxy: {
+        host: 'localhost',
+        port: 8000 // should match server.port config
+      }
+    },
+    server: {
+      port: 8000,
+      base: '.'
+    },
+    shell: {
+      test: {
+        command: 'make test',
+        stdout: true
+      }
     }
   });
 
   // Default task.
-  grunt.registerTask('default', 'coffee concat min');
+  grunt.registerTask('default', 'coffee concat min shell server reload watch');
 
 };

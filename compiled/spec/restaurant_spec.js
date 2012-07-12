@@ -1,15 +1,24 @@
 
 describe("Restaurant Model", function() {
+  beforeEach(function() {
+    return this.server = sinon.fakeServer.create();
+  });
+  afterEach(function() {
+    return this.server.restore();
+  });
   it("should exist", function() {
     return expect(Gourmet.Models.Restaurant).toBeDefined();
   });
   describe("Attributes", function() {
     var ritz;
     ritz = new Gourmet.Models.Restaurant;
-    return it("should have default attributes", function() {
+    it("should have default attributes", function() {
       expect(ritz.attributes.name).toBeDefined();
       expect(ritz.attributes.postcode).toBeDefined();
       return expect(ritz.attributes.rating).toBeDefined();
+    });
+    return it("should have the right url", function() {
+      return expect(ritz.urlRoot).toEqual('/restaurants');
     });
   });
   return describe("Validations", function() {
@@ -54,7 +63,10 @@ describe("Restaurants collection", function() {
   it("should exist", function() {
     return expect(Gourmet.Collections.RestaurantsCollection).toBeDefined();
   });
-  return it("should use the Restaurant model", function() {
+  it("should use the Restaurant model", function() {
     return expect(restaurants.model).toEqual(Gourmet.Models.Restaurant);
+  });
+  return it("should have the right url", function() {
+    return expect(restaurants.url).toEqual('/restaurants');
   });
 });
