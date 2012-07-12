@@ -1,26 +1,22 @@
-# Coffeescript client-side add template
+# Gourmet
 
-This skeleton includes support for Coffeescript compilation and Jasmine BDD testing with minimal-to-no customization required.
-Just remember to change the package name (both in `package.json` and `SpecRunner.html`).
+Sample application (a database restaurant) that includes support for Coffeescript compilation and Jasmine BDD testing.
 
 ## Grunt support
 
-The included `Gruntfile` will build separate app and spec files (including a minified version). To use it, just run:
+The bundled `Gruntfile` offers a few facilities:
 
-    grunt
+- convert, concat and minify coffee files
+- a watch task that executes all of the above every time you save and runs the test suite in a headless environment
+- in addition it's  possible to use [Livereload](http://livereload.com/) by installing the browser extension and running `grunt`. Right now it works properly with Chrome.
 
-To keep the watcher running, just run:
+## Headless testing
 
-    grunt watch
+It requires [Phantomjs](http://phantomjs.org/). If you're on a Mac and use Homebrew, just `brew install phantomjs`. The test task can be invoked separately by running `grunt shell`, however it's part of the `watch` task so that shouldn't be necessary.
 
-## Livereload
+Alternatively, visiting [the test page](http://localhost:8000/SpecRunner.html) will run specs in the browser (better for debugging).
 
-It's possible to use [Livereload](http://livereload.com/) by installing the browser extension and running `make watch`. More information
-available in the [node-livereload](https://github.com/napcs/node-livereload/) README.
+## Hard dependencies
 
-## Upcoming features
-
-Not a promise, but these are some things I really want to dig into and hopefully make possible.
-
-- AMD support
-- Out of the box headless testing
+- Node with npm
+- Phantomjs
