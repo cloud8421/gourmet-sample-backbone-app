@@ -4,14 +4,10 @@ describe "Restaurant Form", ->
 
   beforeEach ->
     loadFixtures 'restaurant_form.html'
-    @server = sinon.fakeServer.create()
     @invisible_form = $('#restaurant-form')
     @restaurant_form = new Gourmet.Views.RestaurantForm
       el: @invisible_form
       collection: new Gourmet.Collections.RestaurantsCollection
-
-  afterEach ->
-    @server.restore()
 
   it "should be defined", ->
     expect(Gourmet.Views.RestaurantForm).toBeDefined()
@@ -37,6 +33,7 @@ describe "Restaurant Form", ->
 
 
     beforeEach ->
+      @server = sinon.fakeServer.create()
       @serialized_data = [
         {
           name: 'restaurant[name]',
@@ -52,6 +49,9 @@ describe "Restaurant Form", ->
         }
       ]
       spyOn(@restaurant_form.$el, 'serializeArray').andReturn @serialized_data
+
+    afterEach ->
+      @server.restore()
 
     it "should parse form data", ->
       expect(@restaurant_form.parseFormData(@serialized_data)).toEqual validAttrs

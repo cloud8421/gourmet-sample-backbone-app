@@ -10,15 +10,11 @@ describe("Restaurant Form", function() {
   jasmine.getFixtures().fixturesPath = 'src/spec/fixtures';
   beforeEach(function() {
     loadFixtures('restaurant_form.html');
-    this.server = sinon.fakeServer.create();
     this.invisible_form = $('#restaurant-form');
     return this.restaurant_form = new Gourmet.Views.RestaurantForm({
       el: this.invisible_form,
       collection: new Gourmet.Collections.RestaurantsCollection
     });
-  });
-  afterEach(function() {
-    return this.server.restore();
   });
   it("should be defined", function() {
     return expect(Gourmet.Views.RestaurantForm).toBeDefined();
@@ -42,6 +38,7 @@ describe("Restaurant Form", function() {
       rating: '5'
     };
     beforeEach(function() {
+      this.server = sinon.fakeServer.create();
       this.serialized_data = [
         {
           name: 'restaurant[name]',
@@ -55,6 +52,9 @@ describe("Restaurant Form", function() {
         }
       ];
       return spyOn(this.restaurant_form.$el, 'serializeArray').andReturn(this.serialized_data);
+    });
+    afterEach(function() {
+      return this.server.restore();
     });
     it("should parse form data", function() {
       return expect(this.restaurant_form.parseFormData(this.serialized_data)).toEqual(validAttrs);
